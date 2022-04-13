@@ -11,40 +11,39 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-            child : Text('FAB'),
-            onPressed: (){}
-        ),
         appBar: AppBar(
           title: Text('Test App')
         ),
-        body: Container(
-            height: 150,
-            padding: EdgeInsets.all(30),
-            child: Row(
-              children: [
-                Image.asset('assets/car.jpeg', width: 100),
-                Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('라페라리'),
-                      Text('직수'),
-                      Text('20억'),
-                      Row(
-                        children: [
-                          Icon(Icons.label),
-                          Text('4')
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
+        body: ListView(
+          children: [
+            ListTile(
+              leading: Icon(Icons.contact_page),
+              title: Text('Daniel Ek'),
             ),
-          ),
+          ],
+        ),
+        bottomNavigationBar: BtmNav()
         ),
       );
   }
 }
+
+class BtmNav extends StatelessWidget {
+  const BtmNav({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Icon(Icons.phone),
+          Icon(Icons.message),
+          Icon(Icons.category),
+        ],
+      ),
+    );
+  }
+}
+
