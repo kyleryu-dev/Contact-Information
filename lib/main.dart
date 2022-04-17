@@ -4,32 +4,40 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  var a = 1;
+  var name = ['Daniel Ek', 'Jim McKelvey', 'Reid Hoffman'];
 
   @override
   Widget build(BuildContext context) {
-
-    var a = 1;
 
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           child: Text(a.toString()),
           onPressed: () {
-            a++;
+            setState(() {
+              a++;
+            });
           },
         ),
         appBar: AppBar(
           title: Text('Test App')
         ),
         body: ListView.builder(
-          itemCount: 15,
+          itemCount: 3,
           itemBuilder: (context, i) {
             return ListTile(
               leading: Icon(Icons.contact_page),
-              title: Text('Daniel Ek'),
+              title: Text(name[i]),
             );
           },
         ),
