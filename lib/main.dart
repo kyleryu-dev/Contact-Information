@@ -15,6 +15,7 @@ class _MyAppState extends State<MyApp> {
 
   var a = 1;
   var name = ['Daniel Ek', 'Jim McKelvey', 'Reid Hoffman'];
+  var like = [0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +37,16 @@ class _MyAppState extends State<MyApp> {
           itemCount: 3,
           itemBuilder: (context, i) {
             return ListTile(
-              leading: Icon(Icons.contact_page),
+              leading: Text(like[i].toString()),
               title: Text(name[i]),
+              trailing: ElevatedButton(
+                child: Text('좋아요'),
+                onPressed: () {
+                  setState(() {
+                    like[i]++;
+                  });
+                },
+              ),
             );
           },
         ),
