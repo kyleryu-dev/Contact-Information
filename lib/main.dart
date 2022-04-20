@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+      home: MyApp())
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -20,11 +22,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         floatingActionButton: FloatingActionButton(
           child: Text(a.toString()),
           onPressed: () {
+            showDialog(context: context, builder: (context) {
+              return Dialog(
+                child: Text('Hello'),
+              );
+            });
             setState(() {
               a++;
             });
@@ -51,7 +57,6 @@ class _MyAppState extends State<MyApp> {
           },
         ),
         bottomNavigationBar: BtmNav()
-        ),
       );
   }
 }
