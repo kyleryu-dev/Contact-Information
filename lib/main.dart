@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,8 +28,19 @@ class _MyAppState extends State<MyApp> {
           child: Text(a.toString()),
           onPressed: () {
             showDialog(context: context, builder: (context) {
-              return Dialog(
-                child: Text('Hello'),
+              return AlertDialog(
+                title: Text('Contact'),
+                content: TextField(),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                    child: const Text('OK'),
+                  ),
+                ],
               );
             });
             setState(() {
