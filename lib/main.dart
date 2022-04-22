@@ -28,20 +28,7 @@ class _MyAppState extends State<MyApp> {
           child: Text(a.toString()),
           onPressed: () {
             showDialog(context: context, builder: (context) {
-              return AlertDialog(
-                title: Text('Contact'),
-                content: TextField(),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text('OK'),
-                  ),
-                ],
-              );
+              return DialogUI();
             });
             setState(() {
               a++;
@@ -92,3 +79,49 @@ class BtmNav extends StatelessWidget {
   }
 }
 
+class DialogUI extends StatelessWidget {
+  DialogUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        width: 300,
+        height: 300,
+        child: Column(
+          children: [
+            TextField(),
+            TextButton( child: Text('완료'), onPressed:(){} ),
+            TextButton(
+                child: Text('취소'),
+                onPressed:(){ Navigator.pop(context); })
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/*
+class DialogUI extends StatelessWidget {
+  const DialogUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Contact'),
+      content: TextField(),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, 'Cancel'),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, 'OK'),
+          child: const Text('OK'),
+        ),
+      ],
+    );
+  }
+}
+ */
