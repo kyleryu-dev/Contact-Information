@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
           child: Text(a.toString()),
           onPressed: () {
             showDialog(context: context, builder: (context) {
-              return DialogUI();
+              return DialogUI( state: a );
             });
             setState(() {
               a++;
@@ -80,7 +80,8 @@ class BtmNav extends StatelessWidget {
 }
 
 class DialogUI extends StatelessWidget {
-  DialogUI({Key? key}) : super(key: key);
+  DialogUI({Key? key, this.state}) : super(key: key);
+  final state;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,7 @@ class DialogUI extends StatelessWidget {
         child: Column(
           children: [
             TextField(),
-            TextButton( child: Text('완료'), onPressed:(){} ),
+            TextButton( child: Text(state.toString()), onPressed:(){} ),
             TextButton(
                 child: Text('취소'),
                 onPressed:(){ Navigator.pop(context); })
