@@ -16,9 +16,22 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  var total = 3;
   var a = 1;
   var name = ['Daniel Ek', 'Jim McKelvey', 'Reid Hoffman'];
   var like = [0, 0, 0];
+
+  addOne() {
+    setState(() {
+      total++;
+    });
+  }
+
+  addName(){
+    setState(() {
+      name.add('Kyle');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +41,9 @@ class _MyAppState extends State<MyApp> {
           child: Text(a.toString()),
           onPressed: () {
             showDialog(context: context, builder: (context) {
-              return DialogUI( state: a );
+              return DialogUI(
+                addOne : addOne
+              );
             });
             setState(() {
               a++;
@@ -36,7 +51,7 @@ class _MyAppState extends State<MyApp> {
           },
         ),
         appBar: AppBar(
-          title: Text('Test App')
+          title: Text(total.toString())
         ),
         body: ListView.builder(
           itemCount: 3,
@@ -80,8 +95,8 @@ class BtmNav extends StatelessWidget {
 }
 
 class DialogUI extends StatelessWidget {
-  DialogUI({Key? key, this.state}) : super(key: key);
-  final state;
+  DialogUI({Key? key, this.addOne}) : super(key: key);
+  final addOne;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +107,9 @@ class DialogUI extends StatelessWidget {
         child: Column(
           children: [
             TextField(),
-            TextButton( child: Text(state.toString()), onPressed:(){} ),
+            TextButton( child: Text('완료'), onPressed:(){
+              addOne();
+            } ),
             TextButton(
                 child: Text('취소'),
                 onPressed:(){ Navigator.pop(context); })
