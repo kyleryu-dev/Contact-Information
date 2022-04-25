@@ -27,9 +27,9 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  addName(){
+  addName(a){
     setState(() {
-      name.add('Kyle');
+      name.add(a);
     });
   }
 
@@ -42,7 +42,8 @@ class _MyAppState extends State<MyApp> {
           onPressed: () {
             showDialog(context: context, builder: (context) {
               return DialogUI(
-                addOne : addOne
+                addOne : addOne,
+                addName : addName
               );
             });
             setState(() {
@@ -95,8 +96,10 @@ class BtmNav extends StatelessWidget {
 }
 
 class DialogUI extends StatelessWidget {
-  DialogUI({Key? key, this.addOne}) : super(key: key);
+  DialogUI({Key? key, this.addOne, this.addName}) : super(key: key);
   final addOne;
+  final addName;
+  var inputData = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +112,7 @@ class DialogUI extends StatelessWidget {
             TextField(),
             TextButton( child: Text('완료'), onPressed:(){
               addOne();
+              addName(inputData.text);
             } ),
             TextButton(
                 child: Text('취소'),
