@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-
   var total = 3;
   var a = 1;
   var name = ['Daniel Ek', 'Jim McKelvey', 'Reid Hoffman'];
@@ -66,7 +65,12 @@ class _MyAppState extends State<MyApp> {
           },
         ),
         appBar: AppBar(
-          title: Text(total.toString())
+          title: Text(total.toString()),
+          actions: [
+            IconButton(onPressed: (){
+              getPermission();
+            }, icon: Icon(Icons.contacts))
+          ],
         ),
         body: ListView.builder(
           itemCount: 3,
